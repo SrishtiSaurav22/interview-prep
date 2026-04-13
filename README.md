@@ -135,7 +135,7 @@ Each folder contains scripts/code written that week, a short weekly README, and 
 |---|---|---|
 | DSA | [Miscellaneous repo](https://github.com/SrishtiSaurav22/Miscellaneous-Mixed-Programs) + Udemy course | Mornings & early evenings |
 | Biblo | [Biblo repo](https://github.com/SrishtiSaurav22/biblo) | Ongoing |
-| French | Duolingo / practice | 30 min/day |
+| French | Grammar / Comprehension / Writing / Practice | 30 min/day |
 | Book reading | Physical books | 30 min/day |
 | Job hunting | Applications & outreach | Late evenings |
 
