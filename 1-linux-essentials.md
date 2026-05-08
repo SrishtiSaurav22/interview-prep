@@ -1124,3 +1124,497 @@ A very common Linux interview question is:
 
 Correct answer:
 - One of the parent directories likely lacks execute permission.
+
+## ⚙️ What Is a Process?
+
+A process is:
+
+> A running instance of a program.
+
+Examples:
+- VS Code running
+- FastAPI server running
+- Chrome tabs
+- Docker daemon
+
+Each process gets:
+- A PID (Process ID)
+- Memory allocation
+- CPU time
+
+---
+
+## 🆔 PID (Process ID)
+
+Every running process has a unique ID.
+
+Example:
+
+```bash
+python app.py
+```
+
+Might create:
+
+```text
+PID = 4123
+```
+
+Linux uses the PID to:
+- Track processes
+- Monitor resource usage
+- Kill processes
+
+---
+
+## 🔍 Viewing Processes
+
+### Basic Process View
+
+```bash
+ps
+```
+
+Shows currently running processes.
+
+---
+
+### Detailed Process View
+
+```bash
+ps aux
+```
+
+---
+
+### 📊 Important `ps aux` Columns
+
+| Column | Meaning |
+|---|---|
+| `USER` | Process owner |
+| `PID` | Process ID |
+| `%CPU` | CPU usage |
+| `%MEM` | Memory usage |
+| `COMMAND` | Running command |
+
+---
+
+## 📊 Real-Time Monitoring
+
+### Using `top`
+
+```bash
+top
+```
+
+Displays:
+- Live CPU usage
+- RAM usage
+- Running processes
+
+Quit using:
+
+```text
+q
+```
+
+---
+
+### ⚡ Better Alternative: `htop`
+
+`htop` is:
+- More visual
+- Easier to read
+- Interactive
+
+Run:
+
+```bash
+htop
+```
+
+Install if missing:
+
+```bash
+sudo apt install htop
+```
+
+---
+
+## 💀 Killing Processes
+
+### Graceful Termination
+
+```bash
+kill PID
+```
+
+Example:
+
+```bash
+kill 4123
+```
+
+Sends:
+
+```text
+SIGTERM
+```
+
+Meaning:
+> "Please stop gracefully."
+
+The process gets time to:
+- Save data
+- Close files
+- Clean up resources
+
+---
+
+## Force Kill
+
+```bash
+kill -9 PID
+```
+
+Sends:
+
+```text
+SIGKILL
+```
+
+Meaning:
+> "Stop immediately."
+
+⚠️ Dangerous if the process is writing data.
+
+Can lead to:
+- Corrupted files
+- Incomplete writes
+- Resource leaks
+
+---
+
+## 🔄 Foreground vs Background Processes
+
+### Foreground Process
+
+```bash
+python app.py
+```
+
+Behavior:
+- Occupies the terminal
+- Blocks further commands
+
+---
+
+### Background Process
+
+```bash
+python app.py &
+```
+
+Behavior:
+- Process runs in background
+- Terminal remains usable
+
+---
+
+## 🧵 Jobs Management
+
+### View Background Jobs
+
+```bash
+jobs
+```
+
+---
+
+### Bring Job to Foreground
+
+```bash
+fg
+```
+
+---
+
+### Suspend Running Process
+
+Press:
+
+```text
+Ctrl + Z
+```
+
+This pauses the process.
+
+---
+
+### Continue Suspended Process in Background
+
+```bash
+bg
+```
+
+---
+
+## ⚡ Hands-On Practice
+
+---
+
+### Step 1 — Start a Long Running Process
+
+```bash
+sleep 300
+```
+
+This process:
+- Sleeps for 300 seconds
+- Occupies the terminal
+
+---
+
+### Step 2 — Stop the Process
+
+Press:
+
+```text
+Ctrl + C
+```
+
+This terminates the foreground process.
+
+---
+
+### Step 3 — Run Process in Background
+
+```bash
+sleep 300 &
+```
+
+Expected Output:
+
+```text
+[1] 1234
+```
+
+Where:
+- `1` → Job number
+- `1234` → PID
+
+---
+
+### Step 4 — View Jobs
+
+```bash
+jobs
+```
+
+Expected:
+
+```text
+[1]+ Running sleep 300 &
+```
+
+---
+
+### Step 5 — View All Processes
+
+```bash
+ps aux
+```
+
+Look for:
+
+```text
+sleep 300
+```
+
+---
+
+### Step 6 — Kill the Process
+
+```bash
+kill PID
+```
+
+Replace `PID` with the actual process ID.
+
+---
+
+### Step 7 — Verify Process Is Gone
+
+```bash
+ps aux | grep sleep
+```
+
+You should no longer see:
+
+```text
+sleep 300
+```
+
+---
+
+### Step 8 — Monitor System with `top`
+
+```bash
+top
+```
+
+Observe:
+- CPU usage
+- Memory usage
+- Running processes
+- PIDs
+
+Quit using:
+
+```text
+q
+```
+
+---
+
+## 🧠 Interview Questions
+
+### ❓ What is a process?
+
+A running instance of a program managed by the operating system.
+
+---
+
+### ❓ What is a PID?
+
+PID stands for:
+> Process ID
+
+A unique identifier assigned to each running process.
+
+---
+
+### ❓ Difference between `kill` and `kill -9`?
+
+| Command | Meaning |
+|---|---|
+| `kill` | Graceful termination |
+| `kill -9` | Forced immediate termination |
+
+---
+
+### ❓ Why avoid `kill -9`?
+
+Because the process cannot:
+- Clean up resources
+- Save state
+- Close files properly
+
+This can cause:
+- Corrupted data
+- Incomplete writes
+
+---
+
+### ❓ What does `top` do?
+
+Shows real-time:
+- CPU usage
+- Memory usage
+- Active processes
+
+---
+
+### ❓ What does `&` do?
+
+Runs a process in the background.
+
+Example:
+
+```bash
+python app.py &
+```
+
+---
+
+### ❓ Difference between foreground and background processes?
+
+| Type | Behavior |
+|---|---|
+| Foreground | Occupies terminal |
+| Background | Runs while terminal remains usable |
+
+---
+
+## 📝 Quick Cheat Sheet
+
+---
+
+# ⚙️ Process Basics
+
+- Process = running program
+- PID = Process ID
+
+---
+
+## ⚡ Essential Commands
+
+| Command | Purpose |
+|---|---|
+| `ps` | Show processes |
+| `ps aux` | Detailed process view |
+| `top` | Live monitoring |
+| `kill PID` | Gracefully stop process |
+| `kill -9 PID` | Force stop process |
+| `jobs` | Show background jobs |
+| `fg` | Bring process to foreground |
+| `bg` | Continue process in background |
+
+---
+
+## 🔄 Process Control
+
+### Run in Background
+
+```bash
+command &
+```
+
+---
+
+### Stop Foreground Process
+
+```text
+Ctrl + C
+```
+
+---
+
+### Suspend Process
+
+```text
+Ctrl + Z
+```
+
+---
+
+## ⚠️ Important Notes
+
+- Use normal `kill` before `kill -9`
+- `kill -9` should be last resort
+- `top` is essential for backend debugging
+
+---
+
+## 🚀 Real Backend Relevance
+
+You will use these commands constantly for:
+
+- Killing stuck backend servers
+- Monitoring APIs
+- Debugging memory issues
+- Managing Docker containers
+- Restarting crashed services
+- Inspecting resource-heavy applications
+
+---
