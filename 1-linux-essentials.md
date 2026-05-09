@@ -2563,3 +2563,558 @@ You’ll use this constantly for:
 - Cloud infrastructure management
 
 ---
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+## 🌍 What Are Environment Variables?
+
+Environment variables are:
+
+> Named values stored by the shell and operating system.
+
+They help programs access:
+- Configuration
+- Paths
+- Secrets
+- System information
+
+---
+
+### ⚡ Common Environment Variables
+
+| Variable | Purpose |
+|---|---|
+| `$HOME` | User home directory |
+| `$USER` | Current user |
+| `$PATH` | Where executable programs are searched |
+| `$PWD` | Current directory |
+| `$SHELL` | Current shell |
+
+---
+
+### 🔍 Viewing Variables
+
+Example:
+
+```bash
+echo $HOME
+```
+
+Possible Output:
+
+```text
+/home/srishti
+```
+
+---
+
+### 🧪 More Examples
+
+```bash
+echo $USER
+echo $PWD
+echo $SHELL
+```
+
+---
+
+### 🛠️ Creating Variables
+
+#### Temporary Variable
+
+```bash
+PROJECT_NAME="Biblo"
+```
+
+Access it:
+
+```bash
+echo $PROJECT_NAME
+```
+
+Output:
+
+```text
+Biblo
+```
+
+---
+
+#### ⚠️ Scope of Temporary Variables
+
+Temporary variables:
+- Exist only in current shell session
+- Disappear after terminal closes
+
+---
+
+### 🌐 Exporting Variables
+
+#### `export`
+
+```bash
+export API_KEY="abc123"
+```
+
+Meaning:
+
+> Make variable available to child processes/programs.
+
+Without `export`:
+- Variable stays local to shell
+
+With `export`:
+- Python/FastAPI/Docker/etc. can access it
+
+---
+
+### 🧬 Real Backend Example
+
+Example:
+
+```bash
+export DATABASE_URL="postgresql://user:password@localhost/db"
+```
+
+Backend applications commonly read:
+- Database URLs
+- JWT secrets
+- AWS credentials
+- API keys
+
+from environment variables.
+
+---
+
+## 🛣️ What Is `PATH`?
+
+`PATH` is one of the most important environment variables.
+
+Check it:
+
+```bash
+echo $PATH
+```
+
+---
+
+### 🧠 What `PATH` Does
+
+When you type:
+
+```bash
+python
+```
+
+Linux searches directories listed in `PATH`.
+
+Example directories:
+
+```text
+/usr/bin
+/bin
+/usr/local/bin
+```
+
+If executable is found:
+- Linux runs it
+
+If not:
+
+```text
+command not found
+```
+
+---
+
+### ⚡ Adding to `PATH`
+
+Example:
+
+```bash
+export PATH=$PATH:/custom/tools
+```
+
+Meaning:
+- Keep existing `PATH`
+- Add new directory
+
+---
+
+## 📄 What Is `.bashrc`?
+
+`.bashrc` is:
+
+> A shell startup configuration file.
+
+Location:
+
+```text
+~/.bashrc
+```
+
+Executed every time a new shell opens.
+
+---
+
+### 🔧 Common `.bashrc` Uses
+
+People commonly store:
+- Aliases
+- Environment variables
+- PATH updates
+- Custom shell settings
+
+---
+
+### ✏️ Editing `.bashrc`
+
+Open:
+
+```bash
+nano ~/.bashrc
+```
+
+Add:
+
+```bash
+export PROJECT_NAME="Biblo"
+```
+
+Save and exit.
+
+---
+
+### 🔄 Reload `.bashrc`
+
+Changes do NOT apply automatically.
+
+Reload:
+
+```bash
+source ~/.bashrc
+```
+
+Now:
+
+```bash
+echo $PROJECT_NAME
+```
+
+works permanently.
+
+---
+
+## 🔐 `.env` vs Environment Variables
+
+Backend projects often use:
+
+```text
+.env
+```
+
+files.
+
+Example:
+
+```env
+DATABASE_URL=postgresql://localhost/biblo
+JWT_SECRET=mysecret
+```
+
+These values are commonly loaded into environment variables.
+
+---
+
+## ⚠️ Security Best Practices
+
+Never hardcode:
+- Passwords
+- API keys
+- Secrets
+
+Instead:
+- Use environment variables
+- Use `.env`
+- Add `.env` to `.gitignore`
+
+---
+
+## ⚡ Hands-On Practice
+
+---
+
+### Step 1 — View Existing Variables
+
+```bash
+echo $HOME
+echo $USER
+echo $PWD
+echo $PATH
+```
+
+---
+
+### Step 2 — Create Temporary Variable
+
+```bash
+PROJECT_NAME="Biblo"
+```
+
+Check:
+
+```bash
+echo $PROJECT_NAME
+```
+
+---
+
+### Step 3 — Export Variable
+
+```bash
+export APP_ENV="development"
+```
+
+Verify:
+
+```bash
+echo $APP_ENV
+```
+
+---
+
+### Step 4 — View All Environment Variables
+
+```bash
+env
+```
+
+---
+
+### Step 5 — Inspect `PATH`
+
+```bash
+echo $PATH
+```
+
+Observe:
+- Multiple directories separated by `:`
+
+---
+
+### Step 6 — Add Temporary PATH Entry
+
+```bash
+export PATH=$PATH:/my/custom/path
+```
+
+Verify:
+
+```bash
+echo $PATH
+```
+
+---
+
+### Step 7 — Open `.bashrc`
+
+```bash
+nano ~/.bashrc
+```
+
+Add:
+
+```bash
+export BIBLO_ENV="local"
+```
+
+---
+
+### Step 8 — Reload `.bashrc`
+
+```bash
+source ~/.bashrc
+```
+
+Verify:
+
+```bash
+echo $BIBLO_ENV
+```
+
+Expected Output:
+
+```text
+local
+```
+
+---
+
+### Step 9 — Create `.env` Practice File
+
+```bash
+touch .env
+nano .env
+```
+
+Add:
+
+```env
+DATABASE_URL=postgresql://localhost/biblo
+JWT_SECRET=supersecret
+```
+
+---
+
+### Step 10 — Secure `.env`
+
+```bash
+chmod 600 .env
+```
+
+---
+
+## 🧠 Interview Questions
+
+### ❓ What are environment variables?
+
+Named values stored by the operating system/shell used for configuration and system behavior.
+
+---
+
+### ❓ What does `export` do?
+
+Makes a variable available to child processes.
+
+---
+
+### ❓ What is `PATH`?
+
+A list of directories Linux searches for executable programs.
+
+---
+
+### ❓ Why is `PATH` important?
+
+Without it:
+- Commands like `python`, `git`, and `node` would not work globally.
+
+---
+
+### ❓ What is `.bashrc`?
+
+A shell startup configuration file executed whenever a new shell session starts.
+
+---
+
+### ❓ Why use environment variables in backend systems?
+
+To avoid hardcoding:
+- Secrets
+- Configurations
+- Credentials
+
+---
+
+### ❓ Why should `.env` files not be committed to GitHub?
+
+Because they may contain:
+- Passwords
+- API keys
+- JWT secrets
+- Database credentials
+
+---
+
+## 📝 Quick Cheat Sheet
+
+---
+
+### 🌍 Environment Variables
+
+#### View Variable
+
+```bash
+echo $VARIABLE_NAME
+```
+
+---
+
+#### Create Variable
+
+```bash
+NAME="value"
+```
+
+---
+
+#### Export Variable
+
+```bash
+export NAME="value"
+```
+
+---
+
+### 🛣️ `PATH`
+
+#### View PATH
+
+```bash
+echo $PATH
+```
+
+---
+
+#### Add to PATH
+
+```bash
+export PATH=$PATH:/new/path
+```
+
+---
+
+### 📄 `.bashrc`
+
+#### Open
+
+```bash
+nano ~/.bashrc
+```
+
+---
+
+#### Reload
+
+```bash
+source ~/.bashrc
+```
+
+---
+
+### 🔐 Security Best Practices
+
+- Never hardcode secrets
+- Use environment variables
+- Use `.env` files
+- Add `.env` to `.gitignore`
+
+Secure `.env` with:
+
+```bash
+chmod 600 .env
+```
+
+---
+
+## 🚀 Real Backend Relevance
+
+You’ll use this constantly for:
+- FastAPI configuration
+- Database URLs
+- JWT secrets
+- Docker containers
+- CI/CD pipelines
+- AWS credentials
+- Production deployments
+
+---
+
