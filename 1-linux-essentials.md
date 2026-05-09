@@ -1618,3 +1618,448 @@ You will use these commands constantly for:
 - Inspecting resource-heavy applications
 
 ---
+
+## 🌊 What Is a Pipe?
+
+A pipe (`|`) takes:
+
+> Output of one command → sends it as input to another command.
+
+Think:
+
+```text
+Command A → Command B
+```
+
+Example:
+
+```bash
+ls | less
+```
+
+Meaning:
+- `ls` produces output
+- `less` receives it
+
+---
+
+## 🧠 Why Pipes Matter
+
+Without pipes:
+- Commands stay isolated
+
+With pipes:
+- Linux becomes composable
+- Small tools combine into powerful workflows
+
+This is a core Unix philosophy.
+
+---
+
+### 🔄 Output Redirection
+
+Linux commands produce output.
+
+You can:
+- Display it
+- Save it
+- Append it
+
+---
+
+### ➡️ `>` (Overwrite Output)
+
+```bash
+ls > files.txt
+```
+
+Meaning:
+- Saves output into `files.txt`
+- Overwrites existing content
+
+---
+
+### ➕ `>>` (Append Output)
+
+```bash
+echo "new log" >> app.log
+```
+
+Meaning:
+- Adds content to the end of a file
+- Preserves existing content
+
+---
+
+### 📥 Input Redirection (`<`)
+
+Less commonly used.
+
+```bash
+sort < names.txt
+```
+
+Meaning:
+- File becomes command input
+
+---
+
+### 🔍 Searching with `grep`
+
+`grep` is a search/filtering tool.
+
+Example:
+
+```bash
+grep error app.log
+```
+
+Finds lines containing:
+
+```text
+error
+```
+
+---
+
+## ⚡ Useful `grep` Options
+
+### Ignore Case
+
+```bash
+grep -i error app.log
+```
+
+Matches:
+- `error`
+- `ERROR`
+- `Error`
+
+---
+
+### Show Line Numbers
+
+```bash
+grep -n error app.log
+```
+
+---
+
+### Invert Match
+
+```bash
+grep -v INFO app.log
+```
+
+Shows everything EXCEPT:
+
+```text
+INFO
+```
+
+---
+
+## 🔥 Pipes + Grep = Real Power
+
+Example:
+
+```bash
+ps aux | grep python
+```
+
+Flow:
+
+```text
+ps aux → grep python
+```
+
+Meaning:
+- List all running processes
+- Filter only Python-related ones
+
+This is extremely common in backend/devops work.
+
+---
+
+## 📄 Real Log Debugging
+
+Example:
+
+```bash
+cat app.log | grep ERROR
+```
+
+Meaning:
+- Read log file
+- Extract only errors
+
+---
+
+## ⚡ Hands-On Practice
+
+---
+
+### Step 1 — Create Practice Directory
+
+```bash
+mkdir pipes-practice
+cd pipes-practice
+```
+
+---
+
+### Step 2 — Create Fake Log File
+
+```bash
+touch app.log
+```
+
+Add logs:
+
+```bash
+echo "INFO Server started" >> app.log
+echo "INFO Database connected" >> app.log
+echo "ERROR Failed login" >> app.log
+echo "WARNING Disk almost full" >> app.log
+echo "ERROR Payment failed" >> app.log
+```
+
+---
+
+### Step 3 — View Log File
+
+```bash
+cat app.log
+```
+
+Expected Output:
+
+```text
+INFO Server started
+INFO Database connected
+ERROR Failed login
+WARNING Disk almost full
+ERROR Payment failed
+```
+
+---
+
+### Step 4 — Search Errors
+
+```bash
+grep ERROR app.log
+```
+
+Expected:
+
+```text
+ERROR Failed login
+ERROR Payment failed
+```
+
+---
+
+### Step 5 — Ignore Case
+
+```bash
+grep -i error app.log
+```
+
+---
+
+### Step 6 — Show Line Numbers
+
+```bash
+grep -n ERROR app.log
+```
+
+Expected:
+
+```text
+3:ERROR Failed login
+5:ERROR Payment failed
+```
+
+---
+
+### Step 7 — Exclude INFO Logs
+
+```bash
+grep -v INFO app.log
+```
+
+---
+
+### Step 8 — Use Pipe
+
+```bash
+cat app.log | grep ERROR
+```
+
+---
+
+### Step 9 — Save Output to File
+
+```bash
+grep ERROR app.log > errors.txt
+```
+
+Check:
+
+```bash
+cat errors.txt
+```
+
+---
+
+### Step 10 — Append New Error
+
+```bash
+echo "ERROR Database crashed" >> errors.txt
+```
+
+Verify:
+
+```bash
+cat errors.txt
+```
+
+---
+
+### Step 11 — Search Running Processes
+
+```bash
+ps aux | grep bash
+```
+
+---
+
+## 🧠 Interview Questions
+
+### ❓ What does a pipe (`|`) do?
+
+Sends output of one command as input to another command.
+
+---
+
+### ❓ Difference between `>` and `>>`?
+
+| Operator | Behavior |
+|---|---|
+| `>` | Overwrites file |
+| `>>` | Appends to file |
+
+---
+
+### ❓ What is `grep` used for?
+
+Searching/filtering text.
+
+Commonly used for:
+- Logs
+- Processes
+- Config files
+
+---
+
+### ❓ What does this command do?
+
+```bash
+ps aux | grep python
+```
+
+Lists all running processes and filters only Python-related ones.
+
+---
+
+### ❓ Why are pipes powerful?
+
+Because Linux commands become composable.
+
+Small commands combine into complex workflows.
+
+---
+
+### ❓ How would you debug logs on a Linux server?
+
+Typical answer:
+
+```bash
+grep ERROR app.log
+tail -f app.log
+```
+
+---
+
+## 📝 Quick Cheat Sheet
+
+---
+
+### 🌊 Pipes
+
+```bash
+command1 | command2
+```
+
+Output of one command becomes input of another.
+
+---
+
+### ➡️ Redirects
+
+| Operator | Purpose |
+|---|---|
+| `>` | Overwrite file |
+| `>>` | Append to file |
+| `<` | Input from file |
+
+---
+
+### 🔍 Grep Commands
+
+| Command | Purpose |
+|---|---|
+| `grep text file` | Search text |
+| `grep -i` | Ignore case |
+| `grep -n` | Show line numbers |
+| `grep -v` | Invert match |
+
+---
+
+## ⚡ Common Real Commands
+
+### Search Logs
+
+```bash
+grep ERROR app.log
+```
+
+---
+
+### Filter Processes
+
+```bash
+ps aux | grep python
+```
+
+---
+
+### Save Errors
+
+```bash
+grep ERROR app.log > errors.txt
+```
+
+---
+
+## 🚀 Real Backend Relevance
+
+You’ll use these constantly for:
+- Searching production logs
+- Debugging failed APIs
+- Monitoring servers
+- Filtering Docker output
+- Investigating crashes
+- CI/CD troubleshooting
+
+---
