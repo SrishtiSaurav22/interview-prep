@@ -2063,3 +2063,503 @@ You’ll use these constantly for:
 - CI/CD troubleshooting
 
 ---
+
+## 👤 Linux Is a Multi-User System
+
+Linux was designed for:
+- Multiple users
+- Shared systems
+- Different permission levels
+
+Every file and process belongs to:
+- A user
+- A group
+
+---
+
+## 👑 What Is `root`?
+
+`root` is:
+
+> The superuser (administrator)
+
+Root can:
+- Access all files
+- Kill any process
+- Install software
+- Modify system configurations
+- Create/delete users
+
+---
+
+## ⚠️ Why Normal Users Exist
+
+Using `root` all the time is dangerous.
+
+Example mistake:
+
+```bash
+rm -rf /
+```
+
+This could destroy the entire system.
+
+So Linux encourages:
+- Normal users for daily work
+- `sudo` for temporary administrative access
+
+---
+
+## 🔑 What Is `sudo`?
+
+`sudo` means:
+
+```text
+SuperUser DO
+```
+
+Example:
+
+```bash
+sudo apt update
+```
+
+Meaning:
+
+> Run command with administrator privileges.
+
+---
+
+## 👤 Current User
+
+### `whoami`
+
+```bash
+whoami
+```
+
+Example Output:
+
+```text
+srishti
+```
+
+---
+
+## 🆔 User & Group Information
+
+### `id`
+
+```bash
+id
+```
+
+Example Output:
+
+```text
+uid=1000(srishti) gid=1000(srishti) groups=1000(srishti),27(sudo)
+```
+
+---
+
+## 🧩 Understanding Groups
+
+Groups are collections of users.
+
+Purpose:
+- Shared permissions
+- Shared access control
+
+Examples:
+- `sudo`
+- `docker`
+- `developers`
+
+---
+
+### 👥 View User Groups
+
+#### `groups`
+
+```bash
+groups
+```
+
+Example Output:
+
+```text
+srishti sudo docker
+```
+
+---
+
+## 📄 Important System Files
+
+---
+
+### `/etc/passwd`
+
+Stores:
+- User accounts
+- Home directories
+- Default shells
+
+View:
+
+```bash
+cat /etc/passwd
+```
+
+---
+
+### `/etc/group`
+
+Stores:
+- Group information
+
+View:
+
+```bash
+cat /etc/group
+```
+
+---
+
+## 🏠 Home Directories
+
+Each user usually has:
+
+```text
+/home/username
+```
+
+Example:
+
+```text
+/home/srishti
+```
+
+---
+
+## 🔐 Ownership Review
+
+Example:
+
+```bash
+ls -l
+```
+
+Output:
+
+```text
+-rw-r--r-- 1 srishti developers file.txt
+```
+
+Meaning:
+- Owner → `srishti`
+- Group → `developers`
+
+---
+
+## ⚡ Changing Ownership
+
+### `chown`
+
+```bash
+sudo chown user file.txt
+```
+
+Change owner and group:
+
+```bash
+sudo chown user:group file.txt
+```
+
+---
+
+## 🚫 Why Some Commands Need `sudo`
+
+Example:
+
+```bash
+apt install nginx
+```
+
+Fails because:
+- Installing software modifies system files
+
+Using:
+
+```bash
+sudo apt install nginx
+```
+
+works correctly.
+
+---
+
+## ⚡ Hands-On Practice
+
+---
+
+### Step 1 — Check Current User
+
+```bash
+whoami
+```
+
+---
+
+### Step 2 — View Detailed User Info
+
+```bash
+id
+```
+
+Observe:
+- UID
+- GID
+- Group memberships
+
+---
+
+### Step 3 — View Your Groups
+
+```bash
+groups
+```
+
+---
+
+### Step 4 — View Home Directory
+
+```bash
+echo $HOME
+```
+
+Expected Output:
+
+```text
+/home/srishti
+```
+
+---
+
+### Step 5 — Inspect `/etc/passwd`
+
+```bash
+cat /etc/passwd
+```
+
+Observe entries like:
+
+```text
+root:x:0:0:root:/root:/bin/bash
+```
+
+---
+
+### Step 6 — Inspect `/etc/group`
+
+```bash
+cat /etc/group
+```
+
+---
+
+### Step 7 — Create Practice File
+
+```bash
+touch ownership-test.txt
+ls -l
+```
+
+---
+
+### Step 8 — Try Changing Ownership
+
+```bash
+sudo chown root ownership-test.txt
+```
+
+Check:
+
+```bash
+ls -l
+```
+
+Owner should now show:
+
+```text
+root
+```
+
+---
+
+### Step 9 — Restore Ownership
+
+```bash
+sudo chown srishti ownership-test.txt
+```
+
+---
+
+#### Step 10 — Try Command Without `sudo`
+
+Example:
+
+```bash
+apt update
+```
+
+This will likely fail.
+
+Now try:
+
+```bash
+sudo apt update
+```
+
+---
+
+## 🧠 Interview Questions
+
+### ❓ What is `root`?
+
+The Linux superuser with unrestricted system access.
+
+---
+
+### ❓ What does `sudo` do?
+
+Runs a command with elevated (administrator) privileges.
+
+---
+
+### ❓ Difference between user and group?
+
+| Concept | Meaning |
+|---|---|
+| User | Individual account |
+| Group | Collection of users |
+
+---
+
+### ❓ What does `id` show?
+
+Displays:
+- UID
+- GID
+- Group memberships
+
+---
+
+### ❓ Why avoid using `root` directly?
+
+Because mistakes can damage the entire system.
+
+Safer approach:
+- Use normal user accounts
+- Use `sudo` only when necessary
+
+---
+
+### ❓ What is stored in `/etc/passwd`?
+
+User account information:
+- Username
+- Home directory
+- Default shell
+
+---
+
+### ❓ Why are groups useful?
+
+They simplify permission management for multiple users.
+
+Example:
+- Entire backend team shares access to a deployment folder
+
+---
+
+## 📝 Quick Cheat Sheet
+
+---
+
+### 👤 User Commands
+
+| Command | Purpose |
+|---|---|
+| `whoami` | Current user |
+| `id` | User + group details |
+| `groups` | Show user groups |
+
+---
+
+### 🔑 `sudo`
+
+```bash
+sudo command
+```
+
+Runs a command with administrator privileges.
+
+---
+
+### 📄 Important Files
+
+| File | Purpose |
+|---|---|
+| `/etc/passwd` | User accounts |
+| `/etc/group` | Group information |
+
+---
+
+### 🔐 Ownership
+
+#### View Ownership
+
+```bash
+ls -l
+```
+
+---
+
+#### Change Ownership
+
+```bash
+sudo chown user file.txt
+```
+
+---
+
+#### 🏠 Home Directory
+
+```bash
+echo $HOME
+```
+
+---
+
+## ⚠️ Important Notes
+
+- Linux is a multi-user system
+- `root` has unrestricted access
+- Use `sudo` carefully
+- Ownership affects permissions
+- Groups simplify shared access
+
+---
+
+## 🚀 Real Backend Relevance
+
+You’ll use this constantly for:
+- Deploying backend applications
+- Managing Linux servers
+- Docker permissions
+- CI/CD runners
+- SSH access
+- File ownership debugging
+- Cloud infrastructure management
+
+---
