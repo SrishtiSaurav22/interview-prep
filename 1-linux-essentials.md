@@ -1,3 +1,321 @@
+# 📚 Linux Fundamentals
+
+---
+
+# 🧠 Session 1 — Linux File System & Navigation
+
+## 📖 Concepts
+
+- Linux directory hierarchy
+- Absolute vs relative paths
+- Hidden files
+- Home directory (`~`)
+- Root directory (`/`)
+- WSL file access (`/mnt/c`)
+
+---
+
+## ⚡ Commands
+
+```bash
+pwd
+ls
+ls -a
+cd
+mkdir
+touch
+rm
+rmdir
+clear
+```
+
+---
+
+## 🛠️ Hands-on
+
+- Navigate Linux filesystem
+- Explore `/mnt/c`
+- Create practice folders/files
+- Understand hidden files
+
+---
+
+## 🎯 Interview Focus
+
+- Difference between `/` and `~`
+- Hidden files
+- Absolute vs relative path
+
+---
+
+# 🧠 Session 2 — Linux Permissions & Ownership
+
+## 📖 Concepts
+
+- Permission model
+- `rwx`
+- Numeric permissions
+- File types
+- Ownership
+- `chmod`
+- `chown`
+
+---
+
+## 🔢 Important Values
+
+```text
+755
+644
+600
+777
+```
+
+---
+
+## ⚡ Commands
+
+```bash
+ls -l
+chmod
+chown
+```
+
+---
+
+## 🛠️ Hands-on
+
+- Create executable script
+- Restrict `.env`
+- Test `chmod 000`
+- Practice ownership changes
+
+---
+
+## 🎯 Interview Focus
+
+- Why `777` is dangerous
+- Difference between `chmod` and `chown`
+- Why scripts need execute permission
+
+---
+
+# 🧠 Session 3 — Process Management
+
+## 📖 Concepts
+
+- What is a process?
+- PID
+- Foreground vs background
+- Signals
+- Killing processes
+
+---
+
+## ⚡ Commands
+
+```bash
+ps
+ps aux
+top
+kill
+kill -9
+jobs
+fg
+bg
+```
+
+---
+
+## 🛠️ Hands-on
+
+- Run `sleep`
+- Kill processes
+- Use background jobs
+- Monitor using `top`
+
+---
+
+## 🎯 Interview Focus
+
+- Difference between `kill` and `kill -9`
+- Why avoid force killing
+- Real-time monitoring
+
+---
+
+# 🧠 Session 4 — Pipes, Redirects & grep
+
+## 📖 Concepts
+
+- Pipes (`|`)
+- Output redirection
+- Input redirection
+- Log filtering
+- Text searching
+
+---
+
+## ⚡ Commands
+
+```bash
+grep
+cat
+>
+>>
+<
+|
+```
+
+---
+
+## 🛠️ Hands-on
+
+- Create fake logs
+- Extract ERROR lines
+- Save filtered logs
+- Pipe process output
+
+---
+
+## 🎯 Interview Focus
+
+- Difference between `>` and `>>`
+- Why pipes are powerful
+- Log debugging workflows
+
+---
+
+# 🧠 Session 5 — Users, Groups & sudo
+
+## 📖 Concepts
+
+- Multi-user Linux
+- `root`
+- `sudo`
+- Groups
+- Ownership
+- User identity
+
+---
+
+## ⚡ Commands
+
+```bash
+whoami
+id
+groups
+sudo
+```
+
+---
+
+## 📄 Important Files
+
+```text
+/etc/passwd
+/etc/group
+```
+
+---
+
+## 🛠️ Hands-on
+
+- Inspect users/groups
+- Use `sudo`
+- Change ownership
+- Explore `/etc/passwd`
+
+---
+
+## 🎯 Interview Focus
+
+- What is root?
+- Why avoid using root directly?
+- Purpose of groups
+
+---
+
+# 🧠 Session 6 — Environment Variables, PATH & .bashrc
+
+## 📖 Concepts
+
+- Environment variables
+- Shell variables
+- Exporting variables
+- `PATH`
+- `.bashrc`
+- `.env`
+
+---
+
+## ⚡ Commands
+
+```bash
+echo
+export
+env
+source
+```
+
+---
+
+## 🛠️ Hands-on
+
+- Create variables
+- Export variables
+- Modify `PATH`
+- Persist config in `.bashrc`
+- Create secure `.env`
+
+---
+
+## 🎯 Interview Focus
+
+- What is `PATH`?
+- Why use environment variables?
+- Why `.env` should not be committed
+
+---
+
+# 🧠 Session 7 — Cron Jobs & Task Scheduling
+
+## 📖 Concepts
+
+- Cron jobs
+- Scheduling tasks
+- Cron syntax
+- Background automation
+
+---
+
+## ⚡ Commands
+
+```bash
+crontab -e
+crontab -l
+crontab -r
+```
+
+---
+
+## 🛠️ Hands-on
+
+- Schedule shell script
+- Create recurring logs
+- Debug cron failures
+
+---
+
+## 🎯 Interview Focus
+
+- Cron syntax
+- Why cron jobs fail
+- Meaning of `2>&1`
+
+---
+
+
 # 🐧 Linux Basics – Cheat Sheet & Interview Prep
 
 ## 📁 File System Overview
