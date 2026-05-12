@@ -316,7 +316,7 @@ crontab -r
 ---
 
 
-# 🐧 Linux Basics – Cheat Sheet & Interview Prep
+# 🐧 Linux Fundamentals Interview Prep
 
 ## 📁 File System Overview
 
