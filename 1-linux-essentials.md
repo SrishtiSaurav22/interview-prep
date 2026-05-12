@@ -1,4 +1,4 @@
-# 📚 Linux Fundamentals
+# 📚 Linux Fundamentals Overview
 
 ---
 
