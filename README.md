@@ -106,7 +106,11 @@ Each folder contains scripts/code written that week, a short weekly README, and 
 
 ### Week 8 — Apache Kafka
 
+---
+
 ### Week 9 - OpenSearch
+
+---
 
 ### Week 10 - Review
 
