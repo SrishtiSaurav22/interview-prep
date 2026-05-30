@@ -1,6 +1,6 @@
 # Interview Prep — Srishti Saurav
 
-8-week structured prep for Backend, Full-stack, Cloud, and Flutter roles.
+10-week structured prep for Backend, Full-stack, Cloud, and Flutter roles.
 **30–45 min/day** on skill revision, alongside DSA (separate track), Biblo, and job hunting.
 
 ---
