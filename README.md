@@ -14,7 +14,9 @@ interview-prep/
 ├── week5-databases/
 ├── week6-backend/
 ├── week7-aws/
-├── week8-review/
+├── week8-apache-kafka/
+├── week9-opensearch/
+├── week10-review/
 └── README.md
 ```
 
@@ -102,7 +104,12 @@ Each folder contains scripts/code written that week, a short weekly README, and 
 
 ---
 
-### Week 8 — Review & Mock Interviews
+### Week 8 — Apache Kafka
+
+### Week 9 - OpenSearch
+
+### Week 10 - Review
+
 > Consolidation
 
 **Weak spot revisit**
