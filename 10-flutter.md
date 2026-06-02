@@ -237,12 +237,19 @@ These topics cover the majority of Flutter internship interview questions.
 ### Example Structure
 
 lib/
+
 ├── screens/
+
 ├── widgets/
+
 ├── models/
+
 ├── services/
+
 ├── providers/
+
 ├── utils/
+
 └── main.dart
 
 ### Concepts
@@ -423,4 +430,7 @@ Before any Flutter interview, make sure you can confidently answer:
 * E-Commerce App
 * Chat Application
 * Social Media Clone
+
+
+# Flutter Interview Preparation
 * Book Management Platform (Biblo)
