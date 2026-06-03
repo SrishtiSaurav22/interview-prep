@@ -434,3 +434,146 @@ Before any Flutter interview, make sure you can confidently answer:
 
 # Flutter Interview Preparation
 * Book Management Platform (Biblo)
+---
+# Phase 1 Interview Prepation Notes
+
+## Session 1: Flutter Fundamentals
+### 1. What is Flutter?
+Google's cross-platform UI framework for building Android, iOS, Web and desktop applications using a single Dart codebase.
+
+### What is Dart?
+Dart is an open-source, client optimised and object-oriented programming langauge developed by Google and used by Flutter.
+
+**Example:**
+```
+void main()
+{
+  print("Hello");
+}
+```
+### 3. What is a widget?
+* Everything in Flutter is a widget.
+* **Analogy:**
+Like a LEGO brick. You combine small bricks (buttons, text, etc.) to build a complex architecture.
+* **Technical:**
+The basic building block of Flutter UI. Widgets are immutable configurations that describe what the UI should look like given its current configuration and state.
+* **Example:**
+```
+const Text(
+  "Hello world",
+  style: TextStyle(fontSize: 20),
+);
+```
+
+### 4. What is a widget tree?
+Flutter UI is built as a hierarchy of widgets.
+```
+MaterialApp
+|_> Scaffold
+    |_> Center
+        |_> Text
+```
+
+ ### 5. What is MaterialApp?
+* **Analogy:** 
+The foundation and frame of a house. It doesn't decide what furniture goes in each room, but it sets up the plumbing, electrical wiring, and blueprint standard (like Material Design style) so everything else works together.
+* **Technical Explanation:** 
+A core convenience widget that wraps your entire application. It configures the top-level Navigator, sets up global themes, handles localization, and enforces Google’s Material Design visual language across the app.
+* **Example:**
+```
+void main() => runApp(
+      const MaterialApp(
+        home: Scaffold(
+          body: Center(child: Text('Home Page')),
+        ),
+      ),
+    );
+```
+
+### 6. What is scaffold?
+* **Analogy:** 
+A blank room with pre-installed fixtures. It gives you a ceiling grid (AppBar), a floor space (BottomNavigationBar), and walls (Drawer), leaving you to just bring in the furniture (Body).
+
+* **Technical Explanation:** 
+A structural widget that provides a consistent visual layout structure for a Material Design screen. It automatically manages the positioning and spacing of common top-level UI components like app bars, snackbars, and floating action buttons.
+
+* **Code Example:**
+```
+const Scaffold(
+  appBar: AppBar(title: Text('My App')),
+  body: Center(child: Text('Content Goes Here')),
+  floatingActionButton: FloatingActionButton(
+    onPressed: null,
+    child: Icon(Icons.add),
+  ),
+);
+```
+
+### 7. What is build() method?
+* **Analogy:** 
+A factory blueprint printer. Every time the factory manager says "the design changed" or "print a new one," the printer spits out a fresh, pixel-perfect layout based on the instructions it was given.
+
+* **Technical Explanation:** 
+A mandatory method in every framework widget that returns a widget tree. It is called by Flutter whenever the widget needs to be rendered for the first time or when its state/dependencies change, rebuilding the UI to reflect updated data.
+
+* **Code Example:**
+```
+@override
+Widget build(BuildContext context) {
+  return const Center(
+    child: Text('Rendered UI'),
+  );
+}
+```
+
+### 8. What is BuildContext?
+* **Analogy:** 
+It is like your GPS coordinates in a giant apartment building. If you want to order food to your door (find a Theme) or find the nearest exit (find the Navigator), you have to know exactly which floor and room number you are currently standing in.
+
+* **Technical Explanation:** 
+It is a reference token that tells Flutter exactly where a specific widget sits inside the massive widget tree. Without it, a widget cannot talk to its parent widgets or look up global app settings.
+
+* **Code Example:**
+```
+@override
+Widget build(BuildContext context) {
+  // Uses context to look up the global text theme
+  return Text(
+    'Styled Text',
+    style: Theme.of(context).textTheme.headlineMedium,
+  );
+}
+```
+```
+@override
+Widget build(BuildContext context) {
+  // "Hey context, look up the tree and find the nearest Navigator 
+  // so we can bounce to the next screen."
+  return ElevatedButton(
+    onPressed: () => Navigator.pop(context),
+    child: const Text('Go Back'),
+  );
+}
+```
+### 9. What are global app settings?
+* **Analogy:** 
+The central AC system in an apartment building. Instead of every room buying its own standalone AC unit, the building has one giant central unit. Any room can simply plug into the wall vent (Theme.of(context)) to get cold air.
+
+* **Technical Explanation:** 
+Configuration data (like colors, fonts, or localized text) provided high up in the widget tree using InheritedWidget. Lower widgets use their BuildContext to look up this central data without having to pass it down manually through every single widget constructor.
+
+* **Code Example:**
+```
+// Setting a global theme at the root
+MaterialApp(
+  theme: ThemeData(primaryColor: Colors.deepPurple),
+  home: const MyScreen(),
+);
+
+// Accessing that global theme deep inside the app
+Widget build(BuildContext context) {
+  return Container(
+    color: Theme.of(context).primaryColor, 
+  );
+}
+```
